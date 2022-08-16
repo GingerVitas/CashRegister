@@ -3,17 +3,18 @@ const db = require('../db');
 
 const Order = db.define('order', {
   id: {
-    type: Sequelize.UUIDV4,
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
     primaryKey: true,
   },
   lineItems: {
     type: Sequelize.JSONB
   },
   total: {
-    type: Sequelize.DECIMAL(10,2),
-    set(value) {
+    type: Sequelize.VIRTUAL,
+    get() {
       return (this.lineItems.reduce((acc, lineItem) => {
-        return acc + lineItem.subtotal
+        return (acc + lineItem.subtotal).toFixed(2)
       }, 0))
     }
   },

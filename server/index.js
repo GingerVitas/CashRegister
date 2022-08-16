@@ -2,7 +2,7 @@ const PORT = process.env.PORT || 8080;
 const app = require('./app');
 const syncAndSeed = require('../data/syncAndSeed');
 
-const init = () => {
+const init = async() => {
   try{
     await syncAndSeed();
     app.listen(PORT, ()=> console.log(`Listening on port ${PORT}`));

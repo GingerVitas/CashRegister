@@ -3,7 +3,8 @@ const db = require('../db');
 
 const LineItem = db.define('line_item', {
   id: {
-    type: Sequelize.UUIDV4,
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
     primaryKey: true
   },
   productName: {
