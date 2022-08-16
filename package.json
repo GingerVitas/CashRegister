@@ -1,0 +1,36 @@
+{
+  "name": "roydan-cash-register",
+  "version": "1.0.0",
+  "description": "A Cash Register App for Roydan",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js",
+    "start:dev": "nodemon server/index.js --ignore dist/ --ignore src/ & npm run build:dev",
+    "build:dev": "npm run build -- --watch --mode=development"
+  },
+  "keywords": [],
+  "author": "Scott Johnson",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^7.4.0",
+    "express": "^4.18.1",
+    "pg": "^8.7.3",
+    "sequelize": "^6.21.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/preset-react": "^7.18.6",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@mui/material": "^5.10.0",
+    "axios": "^0.27.2",
+    "babel-loader": "^8.2.5",
+    "nodemon": "^2.0.19",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
