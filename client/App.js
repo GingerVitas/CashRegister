@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import {loadOrders, loadCategories, loadProducts } from './store';
-import Terminal from './components/ProductsAndTerminal/Terminal.jsx';
+import TerminalWrapper from './components/ProductsAndTerminal/TerminalWrapper.jsx';
 
 const App = () => {
 
@@ -15,10 +15,10 @@ const App = () => {
   return (
     <React.Fragment>
       <div style={{display:'flex'}}>
-        <div className="Terminal" style={{width:"80%", height:'100vh', display:'flex', flexDirection:'column', alignItems:'center'}}>
-          <Terminal/>
+        <div className="Terminal" style={{width:"80%", height:'100vh', display:'flex', flexDirection:'column', alignItems:'center', backgroundColor:'dodgerBlue'}}>
+          <TerminalWrapper />
         </div>
-        <div className="Transactions" style={{width:"20%", height:'100vh'}}>
+        <div className="Transactions" style={{width:"20%", height:'100vh', backgroundColor:'red'}}>
           <h1>Test</h1>
         </div>
       </div>
