@@ -4,8 +4,8 @@ module.exports = router;
 
 router.get('/', async(req, res, next) => {
   try{
-    const products = await Category.findAll();
-    res.json(orders)
+    const categories = await Category.findAll();
+    res.json(categories)
   } catch(err){
     next(err)
   }

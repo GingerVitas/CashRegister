@@ -14,7 +14,7 @@ const Order = db.define('order', {
     type: Sequelize.VIRTUAL,
     get() {
       return (this.lineItems.reduce((acc, lineItem) => {
-        return (acc + lineItem.subtotal).toFixed(2)
+        return parseFloat((acc + lineItem.subtotal).toFixed(2))
       }, 0))
     }
   },

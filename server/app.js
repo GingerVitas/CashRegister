@@ -8,11 +8,11 @@ app.use(express.json());
 app.use('/api', require('./api'));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'))
+  res.sendFile(path.join(__dirname, '..', '/public/index.html'))
 })
 
 // static file-serving middleware
-app.use('/public', express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // any remaining requests with an extension send 404
 app.use((req, res, next) => {

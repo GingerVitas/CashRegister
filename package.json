@@ -4,6 +4,7 @@
   "description": "A Cash Register App for Roydan",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/index.js",
     "start:dev": "nodemon server/index.js --ignore dist/ --ignore src/ & npm run build:dev",

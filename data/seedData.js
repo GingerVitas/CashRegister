@@ -13,7 +13,7 @@ const products = [...Array(50)].map(product => {
   return {
     productName: faker.commerce.productName(),
     stock: Math.floor(Math.random()*100),
-    price: faker.commerce.price(1, 500, 2),
+    price: Number(faker.commerce.price(1, 500, 2)),
     categoryId: categories[categoryIndex].id
   }
 });
@@ -23,31 +23,31 @@ const lineItems = [...Array(25)].map(lineItem => {
   return {
     productName: products[productIndex].productName,
     productPrice: products[productIndex].price,
-    quantity: Math.floor(Math.random()*6),
+    quantity: Math.ceil(Math.random()*5),
     taxRate: .05,
-    subtotal: (this.productPrice * this.quantity * (1+ this.taxRate))
+    get subtotal() { return ((this.productPrice * this.quantity * (1+ this.taxRate)).toFixed(2))*1 }
   }
 })
 
 const orders = [
   {
-    lineItems: [lineItems.slice(0,4)],
+    lineItems: lineItems.slice(0,4),
     complete: true
   },
   {
-    lineItems: [lineItems.slice(5,9)],
+    lineItems: lineItems.slice(5,9),
     complete: true
   },
   {
-    lineItems: [lineItems.slice(10,14)],
+    lineItems: lineItems.slice(10,14),
     complete: true
   },
   {
-    lineItems: [lineItems.slice(15,19)],
+    lineItems: lineItems.slice(15,19),
     complete: true
   },
   {
-    lineItems: [lineItems.slice(20, 24)],
+    lineItems: lineItems.slice(20, 24),
     complete: true
   }
 ]
