@@ -10,3 +10,35 @@ router.get('/', async(req, res, next) => {
     next(err)
   }
 });
+
+router.post('/', async(req, res, next) => {
+  try{
+    const product = await Product.create(req.body);
+    res.send(product)
+  }
+  catch(err){
+    next(err)
+  }
+});
+
+router.delete('/:id', async(req, res, next) => {
+  try{
+    const product = Product.findByPk(req.params.id);
+    await product.destroy();
+    res.sendStatus(204);
+  }
+  catch(err){
+    next(err)
+  }
+});
+
+router.put('/:id', async(req, res, next) => {
+  try {
+    const product = Product.findByPk(req.params.id);
+    await product.update(req.body);
+    res.sendStatus(200);
+  }
+  catch(err){
+    next(err)
+  }
+});
