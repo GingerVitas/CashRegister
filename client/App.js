@@ -17,6 +17,19 @@ const App = () => {
   const [quantity, setQuantity] = useState(1);
   const [taxRate, setTaxRate] = useState(0.05);
   const [page, setPage] = useState(0)
+  const taxableSubtotal = currentOrder.lineItems.length ? currentOrder.lineItems.reduce((acc, item) => {
+    if(item.taxRate !== 0){
+      console.log(item)
+      return acc + (item.productPrice * item.quantity)
+    } else { return acc}
+  }, 0) : 0.00;
+  const taxExemptSubtotal = currentOrder.lineItems.length ? currentOrder.lineItems.reduce((acc, item) => {
+    if(item.taxRate === 0){
+      return acc + (item.productPrice * item.quantity)
+    } else {return acc}
+  }, 0) : 0.00;
+  const tax = taxableSubtotal * 0.05
+  const total = taxableSubtotal + taxExemptSubtotal + tax
 
   useEffect(()=>{
     dispatch(loadOrders());
@@ -42,7 +55,7 @@ const App = () => {
     <React.Fragment>
       <div style={{display:'flex'}}>
         <div className="Terminal" style={{width:"80%", height:'100vh', display:'flex', flexDirection:'column', alignItems:'center', backgroundColor:'dodgerBlue'}}>
-          <TerminalWrapper key={products} categories={categories} products={products} setProducts={setProducts} selectedProducts={selectedProducts} page={page} setPage={setPage} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} quantity={quantity} setQuantity={setQuantity} taxRate={taxRate} setTaxRate={setTaxRate} allProducts={allProducts} category={category} setCategory={setCategory}/>
+          <TerminalWrapper key={products} categories={categories} products={products} setProducts={setProducts} selectedProducts={selectedProducts} page={page} setPage={setPage} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} quantity={quantity} setQuantity={setQuantity} taxRate={taxRate} setTaxRate={setTaxRate} allProducts={allProducts} category={category} setCategory={setCategory} tax={tax} total={total}/>
         </div>
         <div className="Transactions" style={{width:"20%", height:'100vh', backgroundColor:'red', textAlign:'center'}}>
           <h1>Test</h1>
