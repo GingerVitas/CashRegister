@@ -4,7 +4,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const LineItem = ({idx, productName, productPrice, quantity, taxRate, setCurrentOrder, currentOrder}) => {
 
-  const subtotal = (productPrice * quantity * (1+taxRate)).toFixed(2)
+  const subtotal = productPrice ? (productPrice * quantity * (1+taxRate)).toFixed(2) : null
   const handleClick = () => {
     setCurrentOrder({...currentOrder, lineItems: currentOrder.lineItems.filter(item => currentOrder.lineItems.indexOf(item) !== idx)})
   }

@@ -4,8 +4,6 @@ import {loadOrders, loadCategories, loadProducts } from './store';
 import TerminalWrapper from './components/ProductsAndTerminal/TerminalWrapper.jsx';
 
 const App = () => {
-
-
   const dispatch = useDispatch();
   const allProducts = useSelector(state => state.products);
   const categories = useSelector(state => state.categories);
@@ -36,11 +34,7 @@ const App = () => {
   },[products])
 
   useEffect(()=>{
-    if(page > 0){
       setSelectedProducts(products.slice((page*12), (page+1)*12))
-    } else {
-      setSelectedProducts(products.slice((page*12)+page, (page+1)*12))
-    }
   },[page])
 
 
