@@ -17,7 +17,7 @@ const TerminalWrapper = ({categories, category, setCategory, allProducts, produc
       <CategorySelect key={selectedProducts} categories={categories} category={category} setCategory={setCategory} setProducts={setProducts} allProducts={allProducts} />
       <div style={{width:'100%', display:'flex', flexDirection:'column', alignItems:'center'}}>
         <ProductGrid key={selectedProducts} products={selectedProducts} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} quantity={quantity} setQuantity={setQuantity} taxRate={taxRate} setTaxRate={setTaxRate} />
-        <PaginationButtons key={page} products={products} setPage={setPage} page={page} />
+        <PaginationButtons key={page} products={products} setPage={setPage} page={page} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} />
       </div>
     </Box>
   )
