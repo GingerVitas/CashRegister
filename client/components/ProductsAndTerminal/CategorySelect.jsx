@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
 import { Box, MenuItem, Select } from '@mui/material';
 
-const CategorySelect = ({categories, setProducts, allProducts}) => {
+const CategorySelect = ({categories, category, setCategory, setProducts, allProducts}) => {
 
-  const [category, setCategory] = useState(0);
 
   const handleChange = (e) => {
     setCategory(e.target.value)
     if(e.target.value === 0){
       setProducts(allProducts)
+      setCategory(e.target.value)
     }
      else {
       setProducts(allProducts.filter(product => product.categoryId === e.target.value))
+      setCategory(e.target.value)
      }
      
   };
