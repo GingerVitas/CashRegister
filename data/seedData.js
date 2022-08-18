@@ -1,14 +1,32 @@
 const {faker} = require('@faker-js/faker');
 const {db} = require('../server/Database');
 
-const categories = [...Array(5)].map((category, idx) => (
+const categories = [
   {
-    id: idx+1,
-    categoryName: faker.commerce.department()
+    id: 1,
+    categoryName: 'Home Goods'
+  },
+  {
+    id: 2,
+    categoryName: 'Electronics'
+  },
+  {
+    id: 3,
+    categoryName: 'Grocery'
+  },
+  {
+    id: 4,
+    categoryName: 'Home Improvement'
+  },
+  {
+    id: 5,
+    categoryName: 'Literature'
   }
-));
+]
 
-const products = [...Array(50)].map(product => {
+;
+
+const products = [...Array(100)].map(product => {
   const categoryIndex = Math.floor(Math.random()*5)
   return {
     productName: faker.commerce.productName(),
