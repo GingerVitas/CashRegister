@@ -7,12 +7,13 @@ const CategorySelect = ({categories, setProducts, allProducts}) => {
 
   const handleChange = (e) => {
     setCategory(e.target.value)
-    if(category === 0){
+    if(e.target.value === 0){
       setProducts(allProducts)
     }
      else {
-      setProducts(allProducts.filter(product => product.categoryId === category))
+      setProducts(allProducts.filter(product => product.categoryId === e.target.value))
      }
+     
   };
 
   return (

@@ -26,7 +26,7 @@ const categories = [
 
 ;
 
-const products = [...Array(50)].map(product => {
+const products = [...Array(100)].map(product => {
   const categoryIndex = Math.floor(Math.random()*5)
   return {
     productName: faker.commerce.productName(),
