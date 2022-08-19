@@ -27,6 +27,12 @@ const CustomProductDialog = ({open, handleClose, currentOrder, setCurrentOrder})
   const handleSubmit = () => {
     console.log(taxExempt, currentLineItem.taxRate, currentOrder)
     setCurrentOrder({...currentOrder, lineItems: [...currentOrder.lineItems, currentLineItem]})
+    setCurrentLineItem({
+      productName: 'Generic Item',
+      productPrice: 0.01,
+      taxRate: 0.05,
+      quantity: 1
+    })
     handleClose();
   }
 
