@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {loadOrders, loadCategories, loadProducts } from './store';
 import TerminalWrapper from './components/ProductsAndTerminal/TerminalWrapper.jsx';
+import ButtonWrapper from './components/TransactionButtons/ButtonWrapper.jsx';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -16,10 +17,11 @@ const App = () => {
   });
   const [quantity, setQuantity] = useState(1);
   const [taxRate, setTaxRate] = useState(0.05);
+  const [taxExempt, setTaxExempt] = useState(false);
   const [page, setPage] = useState(0)
+  const [cashOpen, setCashOpen] = useState(false);
   const taxableSubtotal = currentOrder.lineItems.length ? currentOrder.lineItems.reduce((acc, item) => {
     if(item.taxRate !== 0){
-      console.log(item)
       return acc + (item.productPrice * item.quantity)
     } else { return acc}
   }, 0) : 0.00;
@@ -54,11 +56,11 @@ const App = () => {
   return (
     <React.Fragment>
       <div style={{display:'flex'}}>
-        <div className="Terminal" style={{width:"80%", height:'100vh', display:'flex', flexDirection:'column', alignItems:'center', backgroundColor:'dodgerBlue'}}>
-          <TerminalWrapper key={products} categories={categories} products={products} setProducts={setProducts} selectedProducts={selectedProducts} page={page} setPage={setPage} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} quantity={quantity} setQuantity={setQuantity} taxRate={taxRate} setTaxRate={setTaxRate} allProducts={allProducts} category={category} setCategory={setCategory} tax={tax} total={total}/>
+        <div className="Terminal" style={{width:"80%", height:'100vh', display:'flex', flexDirection:'column', alignItems:'center'}}>
+          <TerminalWrapper key={products} cashOpen={cashOpen} categories={categories} products={products} setProducts={setProducts} selectedProducts={selectedProducts} page={page} setPage={setPage} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} quantity={quantity} setQuantity={setQuantity} taxRate={taxRate} setTaxRate={setTaxRate} allProducts={allProducts} category={category} setCategory={setCategory} tax={tax} total={total}/>
         </div>
-        <div className="Transactions" style={{width:"20%", height:'100vh', backgroundColor:'red', textAlign:'center'}}>
-          <h1>Test</h1>
+        <div className="Transactions" style={{width:"20%", height:'100vh', textAlign:'center'}}>
+          <ButtonWrapper quantity={quantity} total={total} tax={tax} setQuantity={setQuantity} cashOpen={cashOpen} setCashOpen={setCashOpen} taxExempt={taxExempt} setTaxExempt={setTaxExempt} setTaxRate={setTaxRate} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} />
         </div>
       </div>
     </React.Fragment>

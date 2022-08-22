@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, IconButton } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-const LineItem = ({idx, productName, productPrice, quantity, taxRate, setCurrentOrder, currentOrder}) => {
+const LineItem = ({idx, productName, productPrice, quantity, cashOpen, setCurrentOrder, currentOrder}) => {
 
   const subtotal = productPrice ? (productPrice * quantity).toFixed(2) : null
   const handleClick = () => {
@@ -11,12 +11,12 @@ const LineItem = ({idx, productName, productPrice, quantity, taxRate, setCurrent
 
   return (
     <Box sx={{display:'flex', justifyContent:'space-between', alignItems:'center', width:'100%'}}>
-      <IconButton aria-label='Delete' onClick={handleClick} sx={{width:'5%'}}>
+      {!cashOpen ? <IconButton aria-label='Delete' onClick={handleClick} sx={{width:'5%'}}>
         <DeleteForeverIcon />
-      </IconButton>
+      </IconButton> : <hr/>}
       <Typography sx={{width:'65%'}}>{productName}</Typography>
       <Typography sx={{width:'15%'}}>Qty: {quantity}</Typography>
-      <Typography sx={{width:'15%', textAlign:'right', marginRight:'5px'}}>Subtotal: ${subtotal}</Typography>
+      <Typography sx={{width:'15%', textAlign:'right', marginRight:'5px'}}>${subtotal}</Typography>
     </Box>
   )
 };

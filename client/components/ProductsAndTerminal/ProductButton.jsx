@@ -2,10 +2,13 @@ import React from 'react';
 import {Card, CardActionArea, CardContent, Typography} from '@mui/material';
 
 
-const ProductButton = ({product, quantity, taxRate, currentOrder, setCurrentOrder}) => {
+const ProductButton = ({product, quantity, setQuantity, taxRate, setTaxRate, currentOrder, setCurrentOrder}) => {
 
   const handleClick = () => {
-    setCurrentOrder({...currentOrder, lineItems: [...currentOrder.lineItems, {productName:product.productName, productPrice:product.price, quantity, taxRate}]})
+    const subtotal = product.price * quantity * (1+ taxRate)
+    setCurrentOrder({...currentOrder, lineItems: [...currentOrder.lineItems, {productName:product.productName, productPrice:product.price, quantity, taxRate, subtotal}]});
+    setQuantity(1);
+    setTaxRate(0.05)
   }
 
   return (
