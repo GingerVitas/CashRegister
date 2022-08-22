@@ -10,7 +10,7 @@ const Product = db.define('product', {
   productName: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true,
+    // unique: true,
     validate: {
       notEmpty: true
     }

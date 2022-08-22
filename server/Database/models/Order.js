@@ -21,6 +21,9 @@ const Order = db.define('order', {
   complete: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
+  },
+  createdAt: {
+    type: Sequelize.DATEONLY,
   }
 });
 
