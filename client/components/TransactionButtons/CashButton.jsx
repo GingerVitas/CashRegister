@@ -40,7 +40,7 @@ const CashButton = ({currentOrder, setCurrentOrder, cashOpen, setCashOpen, tax, 
         changeArr.push(currentBill)
       }
     }
-    return changeArr
+    return changeArr 
   }
 
   const handleCashOpen = () => {
