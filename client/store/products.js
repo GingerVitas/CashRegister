@@ -31,11 +31,19 @@ export const deleteProduct = product => {
 };
 export const updateProduct = product => {
   return async(dispatch) => {
+    console.log(product)
     await axios.put(`/api/products/${product.id}`, product);
     const products = (await axios.get('/api/products')).data;
     dispatch(_loadProducts(products));
   };
 };
+export const removeStock = (product) => {
+  return async(dispatch) => {
+    await axios.put(`/api/products/removeStock/${product.id}`, product)
+    const products = (await axios.get('/api/products')).data;
+    dispatch(_loadProducts(products));
+  }
+}
 
 // Store
 export default (state = [], action) => {
@@ -43,7 +51,7 @@ export default (state = [], action) => {
     case LOAD_PRODUCTS:
       return action.products;
     case ADD_PRODUCT:
-      return [...state, action.product];
+      return [action.product, ...state];
     case DELETE_PRODUCT:
       return state.filter(product => product.id !== action.product.id);
     default:

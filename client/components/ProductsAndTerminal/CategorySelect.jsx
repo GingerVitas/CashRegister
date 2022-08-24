@@ -28,7 +28,7 @@ const CategorySelect = ({categories, category, setCategory, setProducts, allProd
         sx={{minWidth:'200px'}}
       >
         <MenuItem value={0}>All Products</MenuItem>
-        {categories.map(category => <MenuItem key={category.id} value={category.id}>{category.categoryName}</MenuItem>)}
+        {categories.map(category => <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>)}
       </Select>
     </Box>
  

@@ -1,9 +1,14 @@
 import React from 'react';
+import { Button } from '@mui/material';
 
-const ManagerButton = () => {
+const ManagerButton = ({managerView, setManagerView}) => {
+
+  const handleClick = () => {
+    setManagerView(!managerView)
+  }
 
   return (
-    <hr/>
+    <Button variant={managerView ? 'contained' : 'outlined'} onClick={handleClick}>Manager View</Button>
   )
 }
 

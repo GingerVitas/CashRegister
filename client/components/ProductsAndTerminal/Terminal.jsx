@@ -5,7 +5,7 @@ import LineItem from './LineItem.jsx';
 const Terminal = ({lineItems, setCurrentOrder, currentOrder, tax, total, cashOpen}) => {
 
   return (
-    <Box sx={{height:'300px', backgroundColor:'white', width: cashOpen ? '98%' : '85%', overflowY:'scroll', border:'2px solid black', borderRadius:'10px', margin:'0', marginTop:'1rem', display:'flex', flexDirection:'column-reverse', alignItems:'center'}}>
+    <Box sx={{height:'300px', backgroundColor:'white', width: '85%', overflowY:'scroll', '&::-webkit-scrollbar':{width:0, height:0}, border:'2px solid black', borderRadius:'10px', margin:'0', marginTop:'1rem', display:'flex', flexDirection:'column-reverse', alignItems:'center'}}>
       {total > 0 &&<Box sx={{display:'flex', textAlign:'right', marginRight:'5px', minWidth:'100%'}}>
         <Typography sx={{width:'100%'}}>Total: ${Number(total).toFixed(2)}</Typography>
       </Box>}

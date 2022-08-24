@@ -4,23 +4,23 @@ const {db} = require('../server/Database');
 const categories = [
   {
     id: 1,
-    categoryName: 'Home Goods'
+    name: 'Home Goods'
   },
   {
     id: 2,
-    categoryName: 'Electronics'
+    name: 'Electronics'
   },
   {
     id: 3,
-    categoryName: 'Grocery'
+    name: 'Grocery'
   },
   {
     id: 4,
-    categoryName: 'Home Improvement'
+    name: 'Home Improvement'
   },
   {
     id: 5,
-    categoryName: 'Literature'
+    name: 'Literature'
   }
 ]
 
@@ -31,7 +31,8 @@ const products = [...Array(100)].map(product => {
   return {
     productName: faker.commerce.productName(),
     stock: Math.floor(Math.random()*100),
-    price: Number(faker.commerce.price(1, 500, 2)),
+    price: Number(faker.commerce.price(1, 200, 2)),
+    categoryName: categories[categoryIndex].name,
     categoryId: categories[categoryIndex].id
   }
 });

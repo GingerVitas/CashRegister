@@ -1,13 +1,18 @@
-import React, {useEffect} from 'react';
-import { Box } from '@mui/material';
+import React, {useState} from 'react';
+import { Box, Button} from '@mui/material';
 import Terminal from './Terminal.jsx';
 import CategorySelect from './CategorySelect.jsx';
 import ProductGrid from './ProductGrid.jsx';
 import PaginationButtons from './PaginationButtons.jsx';
+import ProductManagementTab from '../TransactionButtons/ProductManagementTab.jsx';
 
-const TerminalWrapper = ({categories, cashOpen, setCashOpen, category, setCategory, allProducts, products, setProducts, selectedProducts, page, setPage, currentOrder, setCurrentOrder, quantity, setQuantity, taxRate, setTaxRate, tax, total}) => {
+const TerminalWrapper = ({categories, managerView, cashOpen, category, setCategory, allProducts, products, setProducts, selectedProducts, page, setPage, currentOrder, setCurrentOrder, quantity, setQuantity, taxRate, setTaxRate, tax, total}) => {
 
-  return (
+  const [display, setDisplay] = useState('')
+
+  const buttonStyle = {margin:'1rem'}
+
+  if(!managerView) { return (
     <Box sx={{display:'flex', flexDirection:'column', alignItems:'center', width:'100%', height:'100vh', margin:'0'}}>
       <Terminal lineItems={currentOrder.lineItems} cashOpen={cashOpen} setCurrentOrder={setCurrentOrder} currentOrder={currentOrder} taxRate={taxRate} tax={tax} total={total}/>
       <CategorySelect key={selectedProducts} categories={categories} category={category} setCategory={setCategory} setProducts={setProducts} allProducts={allProducts} />
@@ -17,6 +22,21 @@ const TerminalWrapper = ({categories, cashOpen, setCashOpen, category, setCatego
       </div>
     </Box>
   )
+  } else { return (
+    <Box sx={{display:'flex', flexDirection:'column', alignItems:'center', width:'100%', height:'100vh', margin:'0'}}>
+      <h1 style={{textAlign:'center'}}>Manager Dashboard</h1>
+      <Box sx={{marginTop:'3rem', display:'flex', justifyContent:'center'}}>
+        <Button sx={buttonStyle} name='inventory' variant={display === 'products' ? 'contained' : 'outlined'} onClick={()=> setDisplay('products')}>Manage Products</Button>
+        <Button sx={buttonStyle} name='orders' variant={display === 'orders' ? 'contained' : 'outlined'} onClick={()=> setDisplay('orders')}>Manage Orders</Button>
+        <Button sx={buttonStyle} name='analytics' variant={display === 'analytics' ? 'contained' : 'outlined'} onClick={()=> setDisplay('analytics')}>View Analytics</Button>
+      </Box>
+      <Box sx={{ width:'85%', justifyContent:'center', padding:'1rem', margin:'1rem'}}>
+          {display === 'analytics' ? <AnalyticsTab />
+          : display === 'products' ? <ProductManagementTab /> 
+          : display === 'orders' ? <OrderManagementTable /> : ''} 
+      </Box>
+    </Box>
+  )}
 }
 
 export default TerminalWrapper

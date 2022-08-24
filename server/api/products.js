@@ -23,7 +23,8 @@ router.post('/', async(req, res, next) => {
 
 router.delete('/:id', async(req, res, next) => {
   try{
-    const product = Product.findByPk(req.params.id);
+    const product = await Product.findByPk(req.params.id);
+    console.log(product)
     await product.destroy();
     res.sendStatus(204);
   }
@@ -34,7 +35,7 @@ router.delete('/:id', async(req, res, next) => {
 
 router.put('/:id', async(req, res, next) => {
   try {
-    const product = Product.findByPk(req.params.id);
+    const product = await Product.findByPk(req.params.id);
     await product.update(req.body);
     res.sendStatus(200);
   }
@@ -42,3 +43,14 @@ router.put('/:id', async(req, res, next) => {
     next(err)
   }
 });
+
+router.put('/removeStock/:id', async(req, res, next) => {
+  try{
+    const product = await Product.findByPk(req.params.id);
+    await product.decrement('stock', {by:req.body.quantity*1})
+    res.sendStatus(200);
+  }
+  catch(err){
+    next(err)
+  }
+})

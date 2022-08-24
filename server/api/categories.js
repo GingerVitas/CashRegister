@@ -23,7 +23,7 @@ router.post('/', async(req, res, next) => {
 
 router.delete('/:id', async(req, res, next) => {
   try{
-    const category = Category.findByPk(req.params.id);
+    const category = await Category.findByPk(req.params.id);
     await category.destroy();
     res.sendStatus(204);
   }
@@ -34,7 +34,7 @@ router.delete('/:id', async(req, res, next) => {
 
 router.put('/:id', async(req, res, next) => {
   try {
-    const category = Category.findByPk(req.params.id);
+    const category = await Category.findByPk(req.params.id);
     await category.update(req.body);
     res.sendStatus(200);
   }

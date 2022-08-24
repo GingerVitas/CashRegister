@@ -5,7 +5,7 @@ import Terminal from '../ProductsAndTerminal/Terminal.jsx';
 const CashInDialog = ({cashOpen, handleCashClose, cashIn, handleCashInChange, handleSubmit, setCurrentOrder, currentOrder, tax, total}) => {
 
   return(
-    <Dialog open={cashOpen} onClose={handleCashClose}>
+    <Dialog open={cashOpen} onClose={handleCashClose} fullWidth maxWidth='md'>
       <Box sx={{display:'flex', justifyContent:'center', width:'100%'}}>
        <Terminal lineItems={currentOrder.lineItems} setCurrentOrder={setCurrentOrder} tax={tax} total={total} cashOpen={cashOpen}/>
       </Box>

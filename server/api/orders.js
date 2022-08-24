@@ -23,7 +23,7 @@ router.post('/', async(req, res, next) => {
 
 router.delete('/:id', async(req, res, next) => {
   try{
-    const order = Order.findByPk(req.params.id);
+    const order = await Order.findByPk(req.params.id);
     await order.destroy();
     res.sendStatus(204);
   }
@@ -34,7 +34,7 @@ router.delete('/:id', async(req, res, next) => {
 
 router.put('/:id', async(req, res, next) => {
   try {
-    const order = Order.findByPk(req.params.id);
+    const order = await Order.findByPk(req.params.id);
     await order.update(req.body);
     res.sendStatus(200);
   }
