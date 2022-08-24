@@ -1,12 +1,13 @@
 import React, {useMemo, useState, useEffect, useCallback} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import MaterialReactTable from 'material-react-table';
-import { Box, Tooltip, IconButton, } from '@mui/material';
+import { Box, Tooltip, IconButton, Typography } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import { deleteOrder } from '../../store';
+import LineItem from '../ProductsAndTerminal/LineItem.jsx';
 
 
-const OrderManagementTab = () => {
+const OrderManagementTab = ({cashOpen, managerView, currentOrder, setCurrentOrder}) => {
   
   const dispatch = useDispatch();
   const orders = useSelector(state => state.orders)
@@ -109,16 +110,33 @@ const OrderManagementTab = () => {
         data={orders}
         editingMode="modal"
         enableColumnOrdering
+        enableColumnResizing
         enableEditing
         enableGrouping
         enableStickyFooter
         enableStickyHeader
         initialState={{
           density:'compact',
-          expanded:'false',
           grouping:['createdAt'],
           sorting:[{id:'createdAt', desc:false}]
         }}
+        renderDetailPanel={({row}) => (
+          <Box sx={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+            <Box sx={{display:'flex', justifyContent:'space-between', alignItems:'center', width:managerView ? '75%' : '100%'}}>
+              <Typography sx={{width:'55%', fontWeight:'bold'}}>Product Name</Typography>
+              <Typography sx={{width:'15%', fontWeight:'bold'}}>Quantity</Typography>
+              <Typography sx={{width:'15%', fontWeight:'bold', textAlign:'right'}}>Tax Exempt Status</Typography>
+              <Typography sx={{width:'10%', fontWeight:'bold', textAlign:'right', marginRight:'5px'}}>Subtotal</Typography>
+            </Box>
+            {row.original.lineItems.map((lineItem, idx) => <LineItem key={idx} idx={idx} cashOpen={cashOpen} managerView={managerView} productName={lineItem.productName} productPrice={lineItem.productPrice} quantity={lineItem.quantity} taxRate={lineItem.taxRate} setCurrentOrder={setCurrentOrder} currentOrder={currentOrder}/> )}
+            <Box sx={{display:'flex', justifyContent:'space-between', alignItems:'center', width:managerView ? '75%' : '100%'}}>
+              <Typography sx={{width:'55%', fontWeight:'bold'}}></Typography>
+              <Typography sx={{width:'15%', fontWeight:'bold'}}></Typography>
+              <Typography sx={{width:'15%', fontWeight:'bold', textAlign:'right'}}>Total</Typography>
+              <Typography sx={{width:'10%', fontWeight:'bold', textAlign:'right', marginRight:'5px'}}>{Number(row.original.lineItems.reduce((acc, item) => { return acc + item.subtotal*1},0.00).toFixed(2)).toLocaleString('en-US', {style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2})}</Typography>
+            </Box>
+          </Box>
+        )}
         renderRowActions={({ row, table }) => (
           <Box sx={{ display: 'flex', gap: '1rem' }}>
             <Tooltip arrow placement="right" title="Delete">
