@@ -5,6 +5,7 @@ import CategorySelect from './CategorySelect.jsx';
 import ProductGrid from './ProductGrid.jsx';
 import PaginationButtons from './PaginationButtons.jsx';
 import ProductManagementTab from '../TransactionButtons/ProductManagementTab.jsx';
+import OrderManagementTab from '../TransactionButtons/OrderManagementTab.jsx';
 
 const TerminalWrapper = ({categories, managerView, cashOpen, category, setCategory, allProducts, products, setProducts, selectedProducts, page, setPage, currentOrder, setCurrentOrder, quantity, setQuantity, taxRate, setTaxRate, tax, total}) => {
 
@@ -28,12 +29,10 @@ const TerminalWrapper = ({categories, managerView, cashOpen, category, setCatego
       <Box sx={{marginTop:'3rem', display:'flex', justifyContent:'center'}}>
         <Button sx={buttonStyle} name='inventory' variant={display === 'products' ? 'contained' : 'outlined'} onClick={()=> setDisplay('products')}>Manage Products</Button>
         <Button sx={buttonStyle} name='orders' variant={display === 'orders' ? 'contained' : 'outlined'} onClick={()=> setDisplay('orders')}>Manage Orders</Button>
-        <Button sx={buttonStyle} name='analytics' variant={display === 'analytics' ? 'contained' : 'outlined'} onClick={()=> setDisplay('analytics')}>View Analytics</Button>
       </Box>
       <Box sx={{ width:'85%', justifyContent:'center', padding:'1rem', margin:'1rem'}}>
-          {display === 'analytics' ? <AnalyticsTab />
-          : display === 'products' ? <ProductManagementTab /> 
-          : display === 'orders' ? <OrderManagementTable /> : ''} 
+          { display === 'products' ? <ProductManagementTab /> 
+            : display === 'orders' ? <OrderManagementTab /> : ''} 
       </Box>
     </Box>
   )}

@@ -112,10 +112,6 @@ const ProductManagementTab = () => {
     [getCommonEditTextFieldProps],
   )
 
-    // useEffect(()=> {
-    //   setTableData(products)
-    // },[products])
-
   return (
     <React.Fragment>
       <MaterialReactTable
@@ -129,7 +125,6 @@ const ProductManagementTab = () => {
         }} 
         columns={columns} 
         data={products}
-        // getRowId={(row) => row.original.id}
         editingMode="modal"
         enableColumnOrdering
         enableEditing
