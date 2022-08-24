@@ -35,4 +35,10 @@ const Product = db.define('product', {
   }
 });
 
+Product.prototype.removeStock = function(quantity) {
+  this.stock -= quantity*1;
+  this.save();
+  return this;
+}
+
 module.exports = Product

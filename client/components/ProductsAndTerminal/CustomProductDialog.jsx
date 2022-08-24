@@ -18,15 +18,16 @@ const CustomProductDialog = ({open, handleClose, currentOrder, setCurrentOrder})
     setCurrentLineItem({...currentLineItem, quantity: e.target.value})
   }
   const handlePriceChange = (e) => {
-    setCurrentLineItem({...currentLineItem, productPrice: e.target.value})
+    setCurrentLineItem({...currentLineItem, productPrice: e.target.value*1})
   }
   const handleTaxChange = (e) => {
     setTaxExempt(e.target.checked)
     setCurrentLineItem({...currentLineItem, taxRate: e.target.checked ? 0 : 0.05})
   }
   const handleSubmit = () => {
-    console.log(taxExempt, currentLineItem.taxRate, currentOrder)
-    setCurrentOrder({...currentOrder, lineItems: [...currentOrder.lineItems, currentLineItem]})
+    const subtotal = currentLineItem.productPrice * currentLineItem.quantity * (1+currentLineItem.taxRate)
+    const finalizedLineItem = {...currentLineItem, subtotal}
+    setCurrentOrder({...currentOrder, lineItems: [...currentOrder.lineItems, finalizedLineItem]})
     setCurrentLineItem({
       productName: 'Generic Item',
       productPrice: 0.01,

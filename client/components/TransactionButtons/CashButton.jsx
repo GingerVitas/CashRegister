@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {useDispatch} from 'react-redux';
 import {Button, Snackbar, Alert} from '@mui/material';
 import CashInDialog from './CashInDialog.jsx';
 import ChangeOutDialog from './ChangeOutDialog.jsx';
-import { addOrder } from '../../store/orders.js';
+import { addOrder, removeStock, loadProducts } from '../../store';
 
 const CashButton = ({currentOrder, setCurrentOrder, cashOpen, setCashOpen, tax, total}) => {
   const dispatch = useDispatch();
@@ -13,6 +13,7 @@ const CashButton = ({currentOrder, setCurrentOrder, cashOpen, setCashOpen, tax, 
   const [errorMessage, setErrorMessage] = useState('');
   const [changeArr, setChangeArr] = useState([]);
   const [totalChange, setTotalChange] = useState(0)
+  const [pdf, setPdf] = useState(null)
   const cashUnits = {
     'Hundreds': 10000,
     'Fifties': 5000,
@@ -25,6 +26,7 @@ const CashButton = ({currentOrder, setCurrentOrder, cashOpen, setCashOpen, tax, 
     'Nickels': 5,
     'Pennies': 1
   };
+  const componentRef = useRef();
 
   const changeOut = (cash) => {
     let changeInCents = cash*100 - total*100
@@ -72,10 +74,16 @@ const CashButton = ({currentOrder, setCurrentOrder, cashOpen, setCashOpen, tax, 
     setCashIn(e.target.value)
   }
   const handleSubmit = async() => {
+    console.log(currentOrder)
     if(cashIn > total) {
       const finalOrder = {...currentOrder, complete:true}
       dispatch(addOrder(finalOrder))
       setChangeArr(changeOut(cashIn))
+      await currentOrder.lineItems.forEach(lineItem => {
+        if(lineItem.id){
+          dispatch(removeStock(lineItem))
+        }
+      })
       handleCashClose()
       handleChangeOpen();
     } else {
@@ -88,8 +96,8 @@ const CashButton = ({currentOrder, setCurrentOrder, cashOpen, setCashOpen, tax, 
   return (
     <React.Fragment>
       <Button variant='outlined' onClick={handleCashOpen}>Cash</Button>
-      <CashInDialog cashOpen={cashOpen} handleCashClose={handleCashClose} total={total} tax={tax} cashIn={cashIn} handleSubmit={handleSubmit} handleCashInChange={handleCashInChange} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} />
-      <ChangeOutDialog changeOpen={changeOpen} totalChange={totalChange} changeArr={changeArr} handleChangeClose={handleChangeClose} />
+      {cashOpen && <CashInDialog cashOpen={cashOpen} setPdf={setPdf} handleCashClose={handleCashClose} total={total} tax={tax} cashIn={cashIn} handleSubmit={handleSubmit} handleCashInChange={handleCashInChange} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} />}
+      {changeOpen && <ChangeOutDialog changeOpen={changeOpen} currentOrder={currentOrder} total={total} tax={tax} totalChange={totalChange} changeArr={changeArr} handleChangeClose={handleChangeClose} pdf={pdf} />}
       <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal:'center' }}
         autoHideDuration={3000}
