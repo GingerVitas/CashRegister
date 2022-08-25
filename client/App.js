@@ -57,7 +57,7 @@ const App = () => {
 
   return (
     <Box sx={{backgroundImage:'url("/white_wall_hash.webp")', backgroundRepeat:'repeat', height:'100%'}}>
-      <h1 style={{textAlign:'center', margin:0, paddingTop:'1rem', height:'4vh'}}>Roydan Cash Register</h1>
+      <h1 style={{textAlign:'center', margin:0, paddingTop:'1rem', height:'4vh'}}>Roydan Software Solutions</h1>
       <div style={{display:'flex', flexDirection:'column', justifyContent:'flex-start'}}>
           <TerminalWrapper managerView={managerView} setManagerView={setManagerView} cashOpen={cashOpen} categories={categories} products={products} setProducts={setProducts} selectedProducts={selectedProducts} page={page} setPage={setPage} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} quantity={quantity} setQuantity={setQuantity} taxRate={taxRate} setTaxRate={setTaxRate} setTaxExempt={setTaxExempt} allProducts={allProducts} category={category} setCategory={setCategory} tax={tax} total={total}/>
           <ButtonWrapper quantity={quantity} managerView={managerView} setManagerView={setManagerView} total={total} tax={tax} setQuantity={setQuantity} cashOpen={cashOpen} setCashOpen={setCashOpen} taxExempt={taxExempt} setTaxExempt={setTaxExempt} setTaxRate={setTaxRate} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} />
