@@ -55,11 +55,12 @@ const App = () => {
 
   return (
     <React.Fragment>
+      <h1 style={{textAlign:'center'}}>Roydan Cash Register</h1>
       <div style={{display:'flex'}}>
-        <div className="Terminal" style={{width:"80%", height:'100vh', display:'flex', flexDirection:'column', alignItems:'center'}}>
+        <div className="Terminal" style={{width:"80%", height:'90vh', display:'flex', flexDirection:'column', alignItems:'center'}}>
           <TerminalWrapper managerView={managerView} setManagerView={setManagerView} cashOpen={cashOpen} categories={categories} products={products} setProducts={setProducts} selectedProducts={selectedProducts} page={page} setPage={setPage} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} quantity={quantity} setQuantity={setQuantity} taxRate={taxRate} setTaxRate={setTaxRate} allProducts={allProducts} category={category} setCategory={setCategory} tax={tax} total={total}/>
         </div>
-        <div className="Transactions" style={{width:"20%", height:'100vh', textAlign:'center'}}>
+        <div className="Transactions" style={{width:"20%", height:'90vh', textAlign:'center'}}>
           <ButtonWrapper quantity={quantity} managerView={managerView} setManagerView={setManagerView} total={total} tax={tax} setQuantity={setQuantity} cashOpen={cashOpen} setCashOpen={setCashOpen} taxExempt={taxExempt} setTaxExempt={setTaxExempt} setTaxRate={setTaxRate} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} />
         </div>
       </div>

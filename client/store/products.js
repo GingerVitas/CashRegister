@@ -31,7 +31,6 @@ export const deleteProduct = product => {
 };
 export const updateProduct = product => {
   return async(dispatch) => {
-    console.log(product)
     await axios.put(`/api/products/${product.id}`, product);
     const products = (await axios.get('/api/products')).data;
     dispatch(_loadProducts(products));

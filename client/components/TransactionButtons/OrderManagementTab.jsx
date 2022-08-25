@@ -1,8 +1,8 @@
-import React, {useMemo, useState, useEffect, useCallback} from 'react';
+import React, {useMemo, useState, useCallback} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import MaterialReactTable from 'material-react-table';
-import { Box, Tooltip, IconButton, Typography } from '@mui/material';
-import { Delete } from '@mui/icons-material';
+import { Box, ListItemIcon, Typography, MenuItem } from '@mui/material';
+import { Delete, Send } from '@mui/icons-material';
 import { deleteOrder } from '../../store';
 import LineItem from '../ProductsAndTerminal/LineItem.jsx';
 
@@ -41,7 +41,7 @@ const OrderManagementTab = ({cashOpen, managerView, currentOrder, setCurrentOrde
   const handleDeleteRow = useCallback(
     (row) => {
       if (
-        !confirm(`Are you sure you want to delete ${row.getValue('productName')}`)
+        !confirm(`Are you sure you want to delete this order?`)
       ) {
         return;
       }
@@ -56,11 +56,13 @@ const OrderManagementTab = ({cashOpen, managerView, currentOrder, setCurrentOrde
         accessorKey: 'createdAt',
         header: 'Order Date',
         size: 100,
+        enableEditing: false
       },
       {
         accessorKey: 'id',
         header: 'Order ID',
         size: 200,
+        enableEditing: false
       },
       {
         accessorKey: 'total',
@@ -115,6 +117,7 @@ const OrderManagementTab = ({cashOpen, managerView, currentOrder, setCurrentOrde
         enableGrouping
         enableStickyFooter
         enableStickyHeader
+        enableRowActions
         initialState={{
           density:'compact',
           grouping:['createdAt'],
@@ -137,15 +140,34 @@ const OrderManagementTab = ({cashOpen, managerView, currentOrder, setCurrentOrde
             </Box>
           </Box>
         )}
-        renderRowActions={({ row, table }) => (
-          <Box sx={{ display: 'flex', gap: '1rem' }}>
-            <Tooltip arrow placement="right" title="Delete">
-              <IconButton color="error" onClick={() => handleDeleteRow(row)}>
-                <Delete />
-              </IconButton>
-            </Tooltip>
-          </Box>
-        )}
+        renderRowActionMenuItems={({ closeMenu, row }) => [
+          <MenuItem
+            key={0}
+            onClick={() => {
+              dispatch(deleteOrder(row.original))
+              closeMenu();
+            }}
+            sx={{ m: 0 }}
+          >
+            <ListItemIcon>
+              <Delete />
+            </ListItemIcon>
+            Delete Order
+          </MenuItem>,
+          <MenuItem
+            key={1}
+            onClick={() => {
+              setCurrentOrder(row.original)
+              closeMenu();
+            }}
+            sx={{ m: 0 }}
+          >
+            <ListItemIcon>
+              <Send />
+            </ListItemIcon>
+            Load Order
+          </MenuItem>,
+        ]}
         />
   )
 }

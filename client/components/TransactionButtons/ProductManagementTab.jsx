@@ -103,6 +103,16 @@ const ProductManagementTab = () => {
         accessorKey: 'price',
         header: 'Price',
         size: 100,
+        Cell: ({cell}) => (
+          <>
+            {cell.getValue()?.toLocaleString('en-US', {
+              style: 'currency',
+              currency: 'USD',
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2
+            })}
+          </>
+        ),
         muiTableBodyCellEditTextFieldProps: ({ cell }) => ({
           ...getCommonEditTextFieldProps(cell),
           type: 'number',

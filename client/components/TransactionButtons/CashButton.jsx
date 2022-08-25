@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux';
 import {Button, Snackbar, Alert} from '@mui/material';
 import CashInDialog from './CashInDialog.jsx';
 import ChangeOutDialog from './ChangeOutDialog.jsx';
-import { addOrder, removeStock, loadProducts } from '../../store';
+import { addOrder, removeStock, updateOrder } from '../../store';
 
 const CashButton = ({currentOrder, setCurrentOrder, cashOpen, setCashOpen, tax, total}) => {
   const dispatch = useDispatch();
@@ -90,12 +90,16 @@ const CashButton = ({currentOrder, setCurrentOrder, cashOpen, setCashOpen, tax, 
       setErrorMessage('You have provided insufficient funds')
       setSnackbarOpen(true)
     }
-    
+  }
+  const handleSaveChanges = () => {
+    dispatch(updateOrder(currentOrder));
+    alert('Order has been updated');
+    handleChangeClose();
   }
 
   return (
     <React.Fragment>
-      <Button variant='outlined' onClick={handleCashOpen}>Cash</Button>
+      {currentOrder.complete ? <Button variant='outlined' onClick={handleSaveChanges}>Save Changes</Button> : <Button variant='outlined' onClick={handleCashOpen}>Cash</Button>}
       {cashOpen && <CashInDialog cashOpen={cashOpen} setPdf={setPdf} handleCashClose={handleCashClose} total={total} tax={tax} cashIn={cashIn} handleSubmit={handleSubmit} handleCashInChange={handleCashInChange} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} />}
       {changeOpen && <ChangeOutDialog changeOpen={changeOpen} currentOrder={currentOrder} total={total} tax={tax} totalChange={totalChange} changeArr={changeArr} handleChangeClose={handleChangeClose} pdf={pdf} />}
       <Snackbar
