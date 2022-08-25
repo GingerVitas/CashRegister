@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, IconButton } from '@mui/material';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import {Delete} from '@mui/icons-material';
 
 const LineItem = ({idx, productName, productPrice, changeOpen, quantity, cashOpen, taxRate, setCurrentOrder, currentOrder, managerView}) => {
 
@@ -12,7 +12,7 @@ const LineItem = ({idx, productName, productPrice, changeOpen, quantity, cashOpe
   return (
     <Box sx={{display:'flex', justifyContent:'space-between', alignItems:'center', width:managerView ? '75%' : '100%'}}>
       {(!cashOpen && !managerView && !changeOpen) ? <IconButton aria-label='Delete' onClick={handleClick} sx={{width:'5%'}}>
-        <DeleteForeverIcon />
+        <Delete />
       </IconButton> : null}
       <Typography sx={{width:'55%', paddingLeft:'.5rem'}}>{productName}</Typography>
       <Typography sx={{width:'15%'}}>Qty: {quantity}</Typography>

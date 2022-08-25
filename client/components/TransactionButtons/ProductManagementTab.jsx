@@ -147,7 +147,7 @@ const ProductManagementTab = () => {
               </IconButton>
             </Tooltip>
             <Tooltip arrow placement="right" title="Delete">
-              <IconButton color="error" onClick={() => handleDeleteRow(row)}>
+              <IconButton onClick={() => handleDeleteRow(row)}>
                 <Delete />
               </IconButton>
             </Tooltip>
@@ -155,7 +155,7 @@ const ProductManagementTab = () => {
         )}
         renderTopToolbarCustomActions={() => (
           <Button
-            color="secondary"
+            color="primary"
             onClick={() => setCreateModalOpen(true)}
             variant="contained"
           >

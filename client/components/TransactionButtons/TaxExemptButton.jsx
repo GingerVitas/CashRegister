@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button} from '@mui/material'
 
-const TaxExemptButton = ({taxExempt, setTaxExempt, setTaxRate}) => {
+const TaxExemptButton = ({taxExempt, setTaxExempt, setTaxRate, managerView}) => {
 
   const handleClick = () => {
     if(taxExempt) {
@@ -14,7 +14,7 @@ const TaxExemptButton = ({taxExempt, setTaxExempt, setTaxRate}) => {
   }
   
   return (
-      <Button variant={taxExempt ? 'contained' : 'outlined'} onClick={handleClick}>Tax Exempt</Button>
+      <Button variant={taxExempt ? 'contained' : 'outlined'} onClick={handleClick} sx={{margin:'1rem', visibility: managerView ? 'hidden' : '', backgroundColor: !taxExempt ? 'white' : ''}}>Tax Exempt</Button>
   )
 }
 

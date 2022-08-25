@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Box } from '@mui/material';
 import {loadOrders, loadCategories, loadProducts } from './store';
 import TerminalWrapper from './components/ProductsAndTerminal/TerminalWrapper.jsx';
 import ButtonWrapper from './components/TransactionButtons/ButtonWrapper.jsx';
+import './app.css'
 
 const App = () => {
   const dispatch = useDispatch();
@@ -54,17 +56,13 @@ const App = () => {
 
 
   return (
-    <React.Fragment>
-      <h1 style={{textAlign:'center'}}>Roydan Cash Register</h1>
-      <div style={{display:'flex'}}>
-        <div className="Terminal" style={{width:"80%", height:'90vh', display:'flex', flexDirection:'column', alignItems:'center'}}>
+    <Box sx={{backgroundImage:'url("/white_wall_hash.webp")', backgroundRepeat:'repeat', height:'100%'}}>
+      <h1 style={{textAlign:'center', margin:0, paddingTop:'1rem', height:'4vh'}}>Roydan Cash Register</h1>
+      <div style={{display:'flex', flexDirection:'column', justifyContent:'flex-start'}}>
           <TerminalWrapper managerView={managerView} setManagerView={setManagerView} cashOpen={cashOpen} categories={categories} products={products} setProducts={setProducts} selectedProducts={selectedProducts} page={page} setPage={setPage} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} quantity={quantity} setQuantity={setQuantity} taxRate={taxRate} setTaxRate={setTaxRate} allProducts={allProducts} category={category} setCategory={setCategory} tax={tax} total={total}/>
-        </div>
-        <div className="Transactions" style={{width:"20%", height:'90vh', textAlign:'center'}}>
           <ButtonWrapper quantity={quantity} managerView={managerView} setManagerView={setManagerView} total={total} tax={tax} setQuantity={setQuantity} cashOpen={cashOpen} setCashOpen={setCashOpen} taxExempt={taxExempt} setTaxExempt={setTaxExempt} setTaxRate={setTaxRate} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} />
-        </div>
       </div>
-    </React.Fragment>
+    </Box>
 
   )
 }
