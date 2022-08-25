@@ -21,7 +21,7 @@ const QuantityButton = ({quantity, setQuantity, managerView}) => {
    
   return (
     <React.Fragment>
-      <Button variant={quantity > 1 ? 'contained' : 'outlined'} onClick={handleOpen} sx={{margin:'1rem', visibility: managerView ? 'hidden' : '', backgroundColor: !quantity > 1 ? 'white' : ''}}>Quantity: {quantity}</Button>
+      <Button variant={quantity > 1 ? 'contained' : 'outlined'} onClick={handleOpen} sx={{margin:'1rem', visibility: managerView ? 'hidden' : '', backgroundColor: quantity > 1 ? '' : 'white'}}>Quantity: {quantity}</Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Quantity</DialogTitle>
         <DialogContent>
