@@ -29,6 +29,13 @@ export const deleteOrder = order => {
     dispatch(_deleteOrder(order));
   };
 };
+export const updateOrder = order => {
+  return async(dispatch) => {
+    await axios.put(`/api/orders/${order.id}`, order);
+    const orders = (await axios.get('/api/orders')).data;
+    dispatch(_loadOrders(orders))
+  }
+}
 
 // Store
 export default (state = [], action) => {
