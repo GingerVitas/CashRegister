@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux';
 import {Button, Snackbar, Alert} from '@mui/material';
 import CashInDialog from './CashInDialog.jsx';
 import ChangeOutDialog from './ChangeOutDialog.jsx';
-import { addOrder, removeStock, updateOrder } from '../../store';
+import { addOrder, removeStock, updateOrder, loadProducts } from '../../store';
 
 const CashButton = ({currentOrder, setCurrentOrder, cashOpen, setCashOpen, tax, total, managerView}) => {
   const dispatch = useDispatch();
@@ -84,6 +84,7 @@ const CashButton = ({currentOrder, setCurrentOrder, cashOpen, setCashOpen, tax, 
           dispatch(removeStock(lineItem))
         }
       })
+      dispatch(loadProducts())
       handleCashClose()
       handleChangeOpen();
     } else {

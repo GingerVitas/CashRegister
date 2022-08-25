@@ -14,10 +14,10 @@ const LineItem = ({idx, productName, productPrice, changeOpen, quantity, cashOpe
       {(!cashOpen && !managerView && !changeOpen) ? <IconButton aria-label='Delete' onClick={handleClick} sx={{width:'5%'}}>
         <Delete />
       </IconButton> : null}
-      <Typography sx={{width:'55%', paddingLeft:'.5rem'}}>{productName}</Typography>
+      <Typography sx={{width:'45%', paddingLeft:'.5rem'}}>{productName}</Typography>
       <Typography sx={{width:'15%'}}>Qty: {quantity}</Typography>
       <Typography variant={managerView ? '' :'caption'} sx={{width:'15%', textAlign:'right'}}>{taxRate === 0 ? 'Tax Exempt' : null}</Typography>
-      <Typography sx={{width:'10%', textAlign:'right', marginRight:'5px'}}>${subtotal}</Typography>
+      <Typography sx={{width:'20%', textAlign:'right', marginRight:'5px'}}>${subtotal}</Typography>
     </Box>
   )
 };

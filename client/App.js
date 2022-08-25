@@ -47,11 +47,11 @@ const App = () => {
 
   useEffect(()=>{
     setPage(0)
-    setSelectedProducts(products.slice(0, 12))
+    setSelectedProducts(products.slice(0, 16))
   },[products])
 
   useEffect(()=>{
-      setSelectedProducts(products.slice((page*12), (page+1)*12))
+      setSelectedProducts(products.slice((page*16), (page+1)*16))
   },[page])
 
 
@@ -59,7 +59,7 @@ const App = () => {
     <Box sx={{backgroundImage:'url("/white_wall_hash.webp")', backgroundRepeat:'repeat', height:'100%'}}>
       <h1 style={{textAlign:'center', margin:0, paddingTop:'1rem', height:'4vh'}}>Roydan Cash Register</h1>
       <div style={{display:'flex', flexDirection:'column', justifyContent:'flex-start'}}>
-          <TerminalWrapper managerView={managerView} setManagerView={setManagerView} cashOpen={cashOpen} categories={categories} products={products} setProducts={setProducts} selectedProducts={selectedProducts} page={page} setPage={setPage} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} quantity={quantity} setQuantity={setQuantity} taxRate={taxRate} setTaxRate={setTaxRate} allProducts={allProducts} category={category} setCategory={setCategory} tax={tax} total={total}/>
+          <TerminalWrapper managerView={managerView} setManagerView={setManagerView} cashOpen={cashOpen} categories={categories} products={products} setProducts={setProducts} selectedProducts={selectedProducts} page={page} setPage={setPage} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} quantity={quantity} setQuantity={setQuantity} taxRate={taxRate} setTaxRate={setTaxRate} setTaxExempt={setTaxExempt} allProducts={allProducts} category={category} setCategory={setCategory} tax={tax} total={total}/>
           <ButtonWrapper quantity={quantity} managerView={managerView} setManagerView={setManagerView} total={total} tax={tax} setQuantity={setQuantity} cashOpen={cashOpen} setCashOpen={setCashOpen} taxExempt={taxExempt} setTaxExempt={setTaxExempt} setTaxRate={setTaxRate} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} />
       </div>
     </Box>

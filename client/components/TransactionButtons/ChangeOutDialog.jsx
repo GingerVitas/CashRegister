@@ -26,7 +26,7 @@ const ChangeOutDialog = ({changeOpen, cashOpen, changeArr, totalChange, handleCh
 
   return (
     <React.Fragment>
-      <Dialog open={changeOpen} onClose={handleChangeClose} fullWidth maxWidth='md'>
+      <Dialog open={changeOpen} onClose={handleChangeClose} fullWidth maxWidth='sm'>
       <Box ref={printRef} sx={{display:'flex', justifyContent:'center', width:'100%'}}>
        <Terminal lineItems={currentOrder.lineItems} tax={tax} total={total} changeOpen={changeOpen} cashOpen={cashOpen}/>
       </Box>

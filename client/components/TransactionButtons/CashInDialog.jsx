@@ -6,7 +6,7 @@ const CashInDialog = ({cashOpen, changeOpen, handleCashClose, cashIn, handleCash
 
 
   return(
-    <Dialog open={cashOpen} onClose={handleCashClose} fullWidth maxWidth='md'>
+    <Dialog open={cashOpen} onClose={handleCashClose} fullWidth maxWidth='sm'>
       <Box sx={{display:'flex', justifyContent:'center', width:'100%'}}>
        <Terminal lineItems={currentOrder.lineItems} setCurrentOrder={setCurrentOrder} tax={tax} total={total} changeOpen={changeOpen} cashOpen={cashOpen}/>
       </Box>

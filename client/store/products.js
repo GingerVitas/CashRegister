@@ -39,8 +39,6 @@ export const updateProduct = product => {
 export const removeStock = (product) => {
   return async(dispatch) => {
     await axios.put(`/api/products/removeStock/${product.id}`, product)
-    const products = (await axios.get('/api/products')).data;
-    dispatch(_loadProducts(products));
   }
 }
 
