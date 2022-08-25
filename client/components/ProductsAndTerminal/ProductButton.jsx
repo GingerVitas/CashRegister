@@ -24,13 +24,12 @@ const ProductButton = ({product, quantity, setQuantity, taxRate, setTaxRate, cur
         setCurrentOrder({...currentOrder, lineItems: [...currentOrder.lineItems, {productName:product.productName, productPrice:product.price, id:product.id, quantity, taxRate, subtotal}]});
         setQuantity(1);
       }
-
     }
   }
 
   return (
     <React.Fragment>
-      <Card variant='outlined' color={product.stock < 1 ? '#e57373' : null} sx={{width:'100%', height:'100%', textAlign:'center', backgroundColor:product.stock < 1 ? 'gray' : 'white' }}>
+      <Card variant='outlined' color={product.stock < 1 ? '#e57373' : null} sx={{width:'100%', height:'100%', textAlign:'center', color:product.stock < 1 ? '#9e9e9e' : '' }}>
         <CardActionArea onClick={handleClick} disabled={product.stock < 1 ? true : false} sx={{height:'100%'}}>
           <CardContent sx={{ display:'flex', flexDirection:'column', justifyContent:'center'}}>
             <Typography gutterBottom variant='h5'>{product.productName} <br/> {product.stock < 1 ? 'Out of stock' : null}</Typography>

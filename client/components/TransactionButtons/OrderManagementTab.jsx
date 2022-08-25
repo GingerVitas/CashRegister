@@ -7,7 +7,7 @@ import { deleteOrder } from '../../store';
 import LineItem from '../ProductsAndTerminal/LineItem.jsx';
 
 
-const OrderManagementTab = ({cashOpen, managerView, currentOrder, setCurrentOrder}) => {
+const OrderManagementTab = ({cashOpen, managerView, setManagerView, currentOrder, setCurrentOrder}) => {
   
   const dispatch = useDispatch();
   const orders = useSelector(state => state.orders)
@@ -157,7 +157,8 @@ const OrderManagementTab = ({cashOpen, managerView, currentOrder, setCurrentOrde
           <MenuItem
             key={1}
             onClick={() => {
-              setCurrentOrder(row.original)
+              setCurrentOrder(row.original);
+              setManagerView(false);
               closeMenu();
             }}
             sx={{ m: 0 }}

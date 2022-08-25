@@ -7,12 +7,17 @@ import ManagerButton from './ManagerButton.jsx';
 
 const ButtonWrapper = ({quantity, setQuantity, managerView, setManagerView, cashOpen, setCashOpen, total, tax, taxExempt, setTaxExempt, setTaxRate, currentOrder, setCurrentOrder}) => {
 
+  const buttonStyles = {
+    margin:'1rem', 
+    visibility: managerView ? 'hidden' : ''
+  }
+
   return (
-    <Box sx={{display:'flex', height:'100%', flexDirection:'column', margin:'1rem', justifyContent:'space-evenly'}}>
+    <Box sx={{display:'flex', height:'7vh', margin:'0', justifyContent:'center'}}>
       <ManagerButton managerView={managerView} setManagerView={setManagerView} />
-      <QuantityButton quantity={quantity} setQuantity={setQuantity} />
-      <TaxExemptButton taxExempt={taxExempt} setTaxExempt={setTaxExempt} setTaxRate={setTaxRate} />
-      <CashButton currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} tax={tax} total={total} cashOpen={cashOpen} setCashOpen={setCashOpen}/>
+      <QuantityButton managerView={managerView} quantity={quantity} setQuantity={setQuantity} />
+      <TaxExemptButton managerView={managerView} taxExempt={taxExempt} setTaxExempt={setTaxExempt} setTaxRate={setTaxRate} />
+      <CashButton managerView={managerView} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} tax={tax} total={total} cashOpen={cashOpen} setCashOpen={setCashOpen} />
     </Box>
   )
 }

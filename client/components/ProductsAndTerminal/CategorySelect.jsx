@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { Box, MenuItem, Select } from '@mui/material';
+import React from 'react';
+import { Box, MenuItem, TextField } from '@mui/material';
 
 const CategorySelect = ({categories, category, setCategory, setProducts, allProducts}) => {
 
@@ -9,27 +9,25 @@ const CategorySelect = ({categories, category, setCategory, setProducts, allProd
     if(e.target.value === 0){
       setProducts(allProducts)
       setCategory(e.target.value)
-    }
-     else {
+    } else {
       setProducts(allProducts.filter(product => product.categoryId === e.target.value))
       setCategory(e.target.value)
      }
-     
   };
 
   return (
     <Box sx={{textAlign:'center', marginTop:'1rem'}}>
-      <Select 
-        labelId='Category Select'
+      <TextField 
         id='Category Select'
         value={category}
         label="Product Category"
         onChange={handleChange}
         sx={{minWidth:'200px'}}
+        select
       >
         <MenuItem value={0}>All Products</MenuItem>
         {categories.map(category => <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>)}
-      </Select>
+      </TextField>
     </Box>
  
   )

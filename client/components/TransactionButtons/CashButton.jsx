@@ -5,7 +5,7 @@ import CashInDialog from './CashInDialog.jsx';
 import ChangeOutDialog from './ChangeOutDialog.jsx';
 import { addOrder, removeStock, updateOrder } from '../../store';
 
-const CashButton = ({currentOrder, setCurrentOrder, cashOpen, setCashOpen, tax, total}) => {
+const CashButton = ({currentOrder, setCurrentOrder, cashOpen, setCashOpen, tax, total, managerView}) => {
   const dispatch = useDispatch();
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [cashIn, setCashIn] = useState(0.00)
@@ -99,7 +99,7 @@ const CashButton = ({currentOrder, setCurrentOrder, cashOpen, setCashOpen, tax, 
 
   return (
     <React.Fragment>
-      {currentOrder.complete ? <Button variant='outlined' onClick={handleSaveChanges}>Save Changes</Button> : <Button variant='outlined' onClick={handleCashOpen}>Cash</Button>}
+      {currentOrder.complete ? <Button variant='outlined' onClick={handleSaveChanges} sx={{margin:'1rem'}}>Save Changes</Button> : <Button variant='outlined' onClick={handleCashOpen} sx={{margin:'1rem', visibility: managerView ? 'hidden' : '', backgroundColor: 'white'}}>Cash</Button>}
       {cashOpen && <CashInDialog cashOpen={cashOpen} setPdf={setPdf} handleCashClose={handleCashClose} total={total} tax={tax} cashIn={cashIn} handleSubmit={handleSubmit} handleCashInChange={handleCashInChange} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} />}
       {changeOpen && <ChangeOutDialog changeOpen={changeOpen} currentOrder={currentOrder} total={total} tax={tax} totalChange={totalChange} changeArr={changeArr} handleChangeClose={handleChangeClose} pdf={pdf} />}
       <Snackbar

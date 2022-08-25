@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import {Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from '@mui/material'
 
-const QuantityButton = ({quantity, setQuantity}) => {
+const QuantityButton = ({quantity, setQuantity, managerView}) => {
   const [open, setOpen] = useState(false)
   const [localQuantity, setLocalQuantity] = useState(1)
   const handleOpen = () => {
     setOpen(true)
   };
   const handleClose = () => {
+    setLocalQuantity(1)
     setOpen(false)
   }
   const handleChange = (e) => {
@@ -17,10 +18,10 @@ const QuantityButton = ({quantity, setQuantity}) => {
     setQuantity(localQuantity)
     handleClose()
   }
-  
+   
   return (
     <React.Fragment>
-      <Button variant={quantity > 1 ? 'contained' : 'outlined'} onClick={handleOpen}>Quantity</Button>
+      <Button variant={quantity > 1 ? 'contained' : 'outlined'} onClick={handleOpen} sx={{margin:'1rem', visibility: managerView ? 'hidden' : '', backgroundColor: !quantity > 1 ? 'white' : ''}}>Quantity: {quantity}</Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Quantity</DialogTitle>
         <DialogContent>

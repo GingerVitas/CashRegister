@@ -8,7 +8,7 @@ const ManagerButton = ({managerView, setManagerView}) => {
   }
 
   return (
-    <Button variant={managerView ? 'contained' : 'outlined'} onClick={handleClick}>Manager View</Button>
+    <Button variant={managerView ? 'contained' : 'outlined'} onClick={handleClick} sx={{margin:'1rem', backgroundColor: !managerView ? 'white' : ''}}>Manager View</Button>
   )
 }
 
