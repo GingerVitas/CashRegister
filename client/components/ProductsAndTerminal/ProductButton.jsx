@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Card, CardActionArea, CardContent, Typography, Snackbar, Alert} from '@mui/material';
 
 
-const ProductButton = ({product, quantity, setQuantity, taxRate, setTaxRate, currentOrder, setCurrentOrder}) => {
+const ProductButton = ({product, quantity, setQuantity, taxRate, setTaxRate, setTaxExempt, currentOrder, setCurrentOrder}) => {
 
   const [open, setOpen] = useState(false);
   const handleClose = () => {
@@ -22,7 +22,7 @@ const ProductButton = ({product, quantity, setQuantity, taxRate, setTaxRate, cur
         setQuantity(1)
       } else {
         setCurrentOrder({...currentOrder, lineItems: [...currentOrder.lineItems, {productName:product.productName, productPrice:product.price, id:product.id, quantity, taxRate, subtotal}]});
-        setQuantity(1);
+        setQuantity(1)
       }
     }
   }

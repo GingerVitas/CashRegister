@@ -29,7 +29,7 @@ const PaginationButtons = ({page, setPage, products, currentOrder, setCurrentOrd
           </CardContent>
         </CardActionArea>
         </Card>}
-        {products.length >= (((page+1)*12)+1) && <Card variant='outlined' id='Next Page' sx={{width:'25%', height:'auto', marginLeft:'.5rem', textAlign:'center'}}>
+        {products.length >= (((page+1)*16)+1) && <Card variant='outlined' id='Next Page' sx={{width:'25%', height:'auto', marginLeft:'.5rem', textAlign:'center'}}>
         <CardActionArea onClick={handleNextPage} sx={{height:'100%'}}>
           <CardContent sx={{ display:'flex', flexDirection:'column', justifyContent:'center'}}>
             <Typography variant='h5'>Next</Typography>
