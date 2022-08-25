@@ -71,7 +71,7 @@ const OrderManagementTab = ({cashOpen, managerView, setManagerView, currentOrder
         aggregationFn: 'sum',
         AggregatedCell: ({cell, table}) => (
           <>
-            Sum by{' '}
+            Total Sales by {' '}
             {table.getColumn(cell.row.groupingColumnId ?? '').columnDef.header}:{' '}
             <Box sx={{color: 'success.main', fontWeight:'bold'}}>
               {Number(cell.getValue()?.toFixed(2)).toLocaleString?.('en-US', {
@@ -121,7 +121,7 @@ const OrderManagementTab = ({cashOpen, managerView, setManagerView, currentOrder
         initialState={{
           density:'compact',
           grouping:['createdAt'],
-          sorting:[{id:'createdAt', desc:false}]
+          sorting:[{id:'total', desc:true}]
         }}
         renderDetailPanel={({row}) => (
           <Box sx={{display:'flex', flexDirection:'column', alignItems:'center'}}>
