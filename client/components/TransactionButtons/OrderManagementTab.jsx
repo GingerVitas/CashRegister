@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import MaterialReactTable from 'material-react-table';
 import { Box, ListItemIcon, Typography, MenuItem } from '@mui/material';
 import { Delete, Send } from '@mui/icons-material';
-import { deleteOrder } from '../../store';
+import { deleteOrder, updateOrder } from '../../store';
 import LineItem from '../ProductsAndTerminal/LineItem.jsx';
 
 
@@ -113,7 +113,6 @@ const OrderManagementTab = ({cashOpen, managerView, setManagerView, currentOrder
         editingMode="modal"
         enableColumnOrdering
         enableColumnResizing
-        enableEditing
         enableGrouping
         enableStickyFooter
         enableStickyHeader
@@ -152,7 +151,7 @@ const OrderManagementTab = ({cashOpen, managerView, setManagerView, currentOrder
             <ListItemIcon>
               <Delete />
             </ListItemIcon>
-            Delete Order
+            Delete
           </MenuItem>,
           <MenuItem
             key={1}
@@ -166,8 +165,8 @@ const OrderManagementTab = ({cashOpen, managerView, setManagerView, currentOrder
             <ListItemIcon>
               <Send />
             </ListItemIcon>
-            Load Order
-          </MenuItem>,
+            Load
+          </MenuItem>
         ]}
         />
   )

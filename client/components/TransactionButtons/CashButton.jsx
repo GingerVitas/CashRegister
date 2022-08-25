@@ -100,7 +100,7 @@ const CashButton = ({currentOrder, setCurrentOrder, cashOpen, setCashOpen, tax, 
 
   return (
     <React.Fragment>
-      {currentOrder.complete ? <Button variant='outlined' onClick={handleSaveChanges} sx={{margin:'1rem'}}>Save Changes</Button> : <Button variant='outlined' onClick={handleCashOpen} sx={{margin:'1rem', visibility: managerView ? 'hidden' : '', backgroundColor: 'white'}}>Cash</Button>}
+      {currentOrder.complete ? <Button variant='outlined' onClick={handleSaveChanges} sx={{margin:'1rem'}}>Save Changes</Button> : <Button variant='outlined' onClick={handleCashOpen} sx={{margin:'1rem', width:'8rem', visibility: managerView ? 'hidden' : '', backgroundColor: 'white'}}>Cash</Button>}
       {cashOpen && <CashInDialog cashOpen={cashOpen} setPdf={setPdf} handleCashClose={handleCashClose} total={total} tax={tax} cashIn={cashIn} handleSubmit={handleSubmit} handleCashInChange={handleCashInChange} currentOrder={currentOrder} setCurrentOrder={setCurrentOrder} />}
       {changeOpen && <ChangeOutDialog changeOpen={changeOpen} currentOrder={currentOrder} total={total} tax={tax} totalChange={totalChange} changeArr={changeArr} handleChangeClose={handleChangeClose} pdf={pdf} />}
       <Snackbar
