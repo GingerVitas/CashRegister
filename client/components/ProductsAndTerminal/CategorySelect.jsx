@@ -22,7 +22,7 @@ const CategorySelect = ({categories, category, setCategory, setProducts, allProd
         value={category}
         label="Product Category"
         onChange={handleChange}
-        sx={{minWidth:'200px'}}
+        sx={{minWidth:'200px', backgroundColor:'white'}}
         select
       >
         <MenuItem value={0}>All Products</MenuItem>
