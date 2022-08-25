@@ -37,7 +37,7 @@ const products = [...Array(100)].map(product => {
   }
 });
 
-const lineItems = [...Array(25)].map(lineItem => {
+const lineItems = [...Array(40)].map(lineItem => {
   const productIndex = Math.floor(Math.random()*50)
   return {
     productName: products[productIndex].productName,
@@ -51,24 +51,49 @@ const lineItems = [...Array(25)].map(lineItem => {
 const orders = [
   {
     lineItems: lineItems.slice(0,4),
-    complete: true
+    complete: true,
+    createdAt: '2022-08-24'
   },
   {
     lineItems: lineItems.slice(5,9),
-    complete: true
+    complete: true,
+    createdAt: '2022-08-24'
   },
   {
     lineItems: lineItems.slice(10,14),
-    complete: true
+    complete: true,
+    createdAt: '2022-08-24'
   },
   {
     lineItems: lineItems.slice(15,19),
-    complete: true
+    complete: true,
+    createdAt: '2022-08-23'
   },
   {
     lineItems: lineItems.slice(20, 24),
-    complete: true
-  }
+    complete: true,
+    createdAt: '2022-08-23'
+  },
+  {
+    lineItems: lineItems.slice(25, 26),
+    complete: true,
+    createdAt: '2022-08-23'
+  },
+  {
+    lineItems: lineItems.slice(27, 32),
+    complete: true,
+    createdAt: '2022-08-23'
+  },
+  {
+    lineItems: lineItems.slice(33, 35),
+    complete: true,
+    createdAt: '2022-08-25'
+  },
+  {
+    lineItems: lineItems.slice(36),
+    complete: true,
+    createdAt: '2022-08-25'
+  },
 ]
 
 module.exports = {

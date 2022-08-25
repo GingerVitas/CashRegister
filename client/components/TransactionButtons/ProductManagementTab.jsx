@@ -139,6 +139,9 @@ const ProductManagementTab = () => {
         enableColumnOrdering
         enableEditing
         onEditingRowSave={handleSaveRowEdits} 
+        initialState={{
+          sorting: [{id: 'productName', desc:false }]
+        }}
         renderRowActions={({ row, table }) => (
           <Box sx={{ display: 'flex', gap: '1rem' }}>
             <Tooltip arrow placement="left" title="Edit">
